@@ -3,15 +3,17 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import { useNavigate } from "react-router-dom";
 
-function Create({ edit, index, editC}) {
+function Create({
+  index,
+  editC,
+  userName,
+  email,
+  mobileNo,
+  setUserName,
+  setEmail,
+  setMobileNo,
+}) {
   const [error, setError] = useState("");
-  const [userName, setUserName] = useState(
-    edit === undefined ? null : edit[0].userName
-  );
-  const [mobileNo, setMobileNo] = useState(
-    edit === undefined ? null : edit[0].mobileNo
-  );
-  const [email, setEmail] = useState(edit === undefined ? null : edit[0].email);
 
   const navigate = useNavigate();
 
@@ -27,8 +29,7 @@ function Create({ edit, index, editC}) {
 
   function submit(e) {
     e.preventDefault();
-
-    if (userName === null && mobileNo === null && email == null) {
+    if ((userName === null && mobileNo === null && email == null) || (userName === '' && mobileNo === '' && email === '')) {
       setError("empty");
     } else {
       const savedData = JSON.parse(localStorage.getItem("Data"));
@@ -91,7 +92,7 @@ function Create({ edit, index, editC}) {
               <input
                 placeholder={error !== "" ? error : "E-Mail"}
                 onChange={emailData}
-                type="email"
+                type=""
                 className="form-control"
                 id="exampleInputEmail"
                 value={email}

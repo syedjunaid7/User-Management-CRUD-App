@@ -1,14 +1,14 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import DataTable from "../../components/DataTable/DataTable";
 
-function Dsiplay({ editList}) {
+function Dsiplay({ editList, setUserName, setEmail, setMobileNo }) {
   const [data, setSavedData] = useState([]);
 
   useEffect(() => {
     setSavedData(JSON.parse(localStorage.getItem("Data")));
-  },[]);
+  }, []);
   const navigate = useNavigate();
 
   function deleteList(index) {
@@ -22,14 +22,22 @@ function Dsiplay({ editList}) {
   }
   function previous() {
     navigate(-1);
+    setEmail("");
+    setMobileNo("");
+    setUserName("");
   }
   return (
     <div class="container">
       <div className="top" onClick={previous}>
-        <IoMdArrowRoundBack className="back"/>
+        <IoMdArrowRoundBack className="back" onClick={previous} />
         <span>Previos Page</span>
       </div>
-      <DataTable data={data} delAll={delAll} deleteList={deleteList} editList={editList}/>
+      <DataTable
+        data={data}
+        delAll={delAll}
+        deleteList={deleteList}
+        editList={editList}
+      />
     </div>
   );
 }

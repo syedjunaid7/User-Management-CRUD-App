@@ -1,15 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 function DataTable({ data, deleteList, delAll, editList }) {
   return (
     <>
       {data.length > 0 ? (
-        <div>
-          <div className="row">
-            <div className="col-12">
-              <div>
-                <table className="table table-striped table-bordered">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
                       <th scope="col">S.No.</th>
@@ -26,19 +26,19 @@ function DataTable({ data, deleteList, delAll, editList }) {
                         <td>{data.userName}</td>
                         <td>{data.mobileNo}</td>
                         <td>{data.email}</td>
-                        <td className="align-middle text-center">
-                          <div className="d-flex justify-content-center ">
+                        <td class="align-middle text-center">
+                          <div class="d-flex justify-content-center">
                             <button
                               type="button"
-                              className="btn btn-outline-danger btn-sm me-2"
+                              class="btn btn-outline-danger btn-sm me-2"
                               onClick={() => deleteList(id)}
                             >
                               Delete
                             </button>
-                            <Link to={'/'}>
+                            <Link to={"/"}>
                               <button
                                 type="button"
-                                className="btn btn-outline-success btn-sm"
+                                class="btn btn-outline-success btn-sm"
                                 onClick={() => editList(id)}
                               >
                                 Edit
@@ -53,14 +53,16 @@ function DataTable({ data, deleteList, delAll, editList }) {
               </div>
             </div>
           </div>
-          <div className="mt-4">
-            <button
-              type="button"
-              className="btn btn-danger d-block mx-auto"
-              onClick={delAll}
-            >
-              Delete All
-            </button>
+          <div class="row mt-4">
+            <div class="col-12">
+              <button
+                type="button"
+                class="btn btn-danger d-block mx-auto"
+                onClick={delAll}
+              >
+                Delete All
+              </button>
+            </div>
           </div>
         </div>
       ) : (
