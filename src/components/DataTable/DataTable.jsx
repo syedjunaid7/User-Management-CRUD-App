@@ -8,7 +8,7 @@ function DataTable({ data, deleteList, delAll, editList }) {
     <div className="container">
       <div className="row">
         <div className="col-12">
-          <div className="table-responsive">
+          <div className="table-cont">
             <table className="table table-striped table-bordered">
               <thead>
                 <tr>

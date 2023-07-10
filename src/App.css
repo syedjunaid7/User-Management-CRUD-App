@@ -5,6 +5,9 @@
   justify-content: center;
   align-items: center;
 }
+.container >row >table{
+  width: 40%;
+}
 
 .top{
   margin-bottom: 20px;

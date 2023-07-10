@@ -13,7 +13,9 @@ function App() {
   const [mobileNo, setMobileNo] = useState(
     edit === undefined ? null : edit[0].mobileNo
   );
-  const [email, setEmail] = useState(edit === undefined ? null : edit[0].email);
+  const [email, setEmail] = useState(
+    edit === undefined ? null : edit[0].email
+    );
 
   const [index, setIndex] = useState();
   const [editC, setEditC] = useState(false);
