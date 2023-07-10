@@ -27,7 +27,7 @@ function Dsiplay({ editList, setUserName, setEmail, setMobileNo }) {
     setUserName("");
   }
   return (
-    <div class="container">
+    <div class="container-main">
       <div className="top" onClick={previous}>
         <IoMdArrowRoundBack className="back" onClick={previous} />
         <span>Previos Page</span>

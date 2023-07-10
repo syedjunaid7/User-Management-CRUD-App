@@ -5,9 +5,7 @@
   justify-content: center;
   align-items: center;
 }
-.container >row >table{
-  width: 40%;
-}
+
 
 .top{
   margin-bottom: 20px;
@@ -22,4 +20,41 @@
 }
 .button{
   width: 100%;
+}
+
+@media (max-width: 767px) {
+  /* CSS styles for mobile screens */
+  .container {
+    /* Modify container styles for mobile */
+  }
+  
+  .row {
+    /* Modify row styles for mobile */
+  }
+  
+  .col {
+    /* Modify column styles for mobile */
+  }
+  
+  .table-cont {
+    /* Modify table container styles for mobile */
+  }
+  
+  .table {
+    /* Modify table styles for mobile */
+  }
+  
+  /* Continue modifying other styles for mobile as needed */
+  
+  .App {
+    /* Modify overall app styles for mobile */
+  }
+  
+  .top {
+    /* Modify top styles for mobile */
+  }
+  
+  .button {
+    /* Modify button styles for mobile */
+  }
 }
