@@ -6,8 +6,8 @@ function DataTable({ data, deleteList, delAll, editList }) {
 <>
   {data.length > 0 ? (
     <div className="container">
-      <div className="">
-        <div className="col-6">
+      <div className="row">
+        <div className="col">
           <div className="table-cont">
             <table className="table table-striped table-bordered">
               <thead>
