@@ -1,115 +1,75 @@
-import React, { useEffect, useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/js/bootstrap.js";
+import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
-function Create({
-  index,
-  editC,
-  userName,
-  email,
-  mobileNo,
-  setUserName,
-  setEmail,
-  setMobileNo,
-}) {
-  const [error, setError] = useState("");
+function Create() {
+  const [name, setName] = useState("");
+  const [mobileNo, setMobileNo] = useState("");
+  const [email, setEmail] = useState("");
+  const [empty, setEmpty] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // New state for loading indicator
 
   const navigate = useNavigate();
 
-  function userData(e) {
-    setUserName(e.target.value);
-  }
-  function NumData(e) {
-    setMobileNo(e.target.value);
-  }
-  function emailData(e) {
-    setEmail(e.target.value);
-  }
+  const submit = () => {
+    if (name !== "" && mobileNo !== "" && email !== "") {
+      setIsLoading(true);
 
-  function submit(e) {
-    e.preventDefault();
-    if ((userName === null && mobileNo === null && email == null) || (userName === '' && mobileNo === '' && email === '')) {
-      setError("empty");
+      axios
+        .post("https://64aed895c85640541d4dd114.mockapi.io/user", {
+          name,
+          email,
+          mobileNo,
+        })
+        .then(() => {
+          setName("");
+          setMobileNo("");
+          setEmail("");
+          navigate("/display", { state: { shouldFetchData: true } });
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false); 
+        });
     } else {
-      const savedData = JSON.parse(localStorage.getItem("Data"));
-      if (editC) {
-        const savedData = JSON.parse(localStorage.getItem("Data"));
-        savedData[index] = {
-          userName: userName,
-          mobileNo: mobileNo,
-          email: email,
-        };
-        localStorage.setItem("Data", JSON.stringify([...savedData]));
-      } else {
-        if (savedData) {
-          localStorage.setItem(
-            "Data",
-            JSON.stringify([
-              ...savedData,
-              { userName: userName, mobileNo: mobileNo, email: email },
-            ])
-          );
-        } else {
-          localStorage.setItem(
-            "Data",
-            JSON.stringify([
-              { userName: userName, mobileNo: mobileNo, email: email },
-            ])
-          );
-        }
-      }
-      navigate("/display");
+      setEmpty(true);
     }
-  }
+  };
+
   return (
-    <div className="container d-flex justify-content-center flex-column align-items-center">
-      <h1 className="mb-4">User Details</h1>
-      <div className="row">
-        <div className="col-12">
-          <form>
-            <div className="mb-4">
-              <input
-                placeholder={error !== "" ? error : "User Name"}
-                onChange={userData}
-                type="text"
-                className="form-control"
-                id="exampleInputUserName"
-                value={userName}
-              />
-            </div>
-            <div className="mb-4">
-              <input
-                placeholder={error !== "" ? error : "Mobile No"}
-                onChange={NumData}
-                type="number"
-                className="form-control"
-                id="exampleInputMobileNumber"
-                value={mobileNo}
-              />
-            </div>
-            <div className="mb-4">
-              <input
-                placeholder={error !== "" ? error : "E-Mail"}
-                onChange={emailData}
-                type=""
-                className="form-control"
-                id="exampleInputEmail"
-                value={email}
-              />
-            </div>
-            <div className="d-flex justify-content-center flex-column align-items-center">
-              <button
-                type="submit"
-                className="btn btn-primary"
-                onClick={submit}
-              >
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
+    <div className="create-div">
+      <h1>Enter User Details</h1>
+      <input
+        placeholder={empty !== false ? "Empty Field" : "Name"}
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <input
+        placeholder={empty !== false ? "Empty Field" : "Mobile No"}
+        type="number"
+        value={mobileNo}
+        onChange={(e) => setMobileNo(e.target.value)}
+      />
+      <input
+        placeholder={empty !== false ? "Empty Field" : "Email"}
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <button className="submit-btn" type="submit" onClick={submit}>
+        {isLoading ? (
+          <div className="loader">
+            Submit
+            <ClipLoader size={20} color="white" />
+          </div>
+        ) : (
+          "Submit"
+        )}
+      </button>
     </div>
   );
 }

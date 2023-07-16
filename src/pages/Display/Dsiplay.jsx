@@ -1,45 +1,79 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import DataTable from "../../components/DataTable/DataTable";
+import axios from "axios";
+import RingLoader from "react-spinners/RingLoader";
+import { useNavigate } from "react-router-dom";
 
-function Dsiplay({ editList, setUserName, setEmail, setMobileNo }) {
-  const [data, setSavedData] = useState([]);
-
-  useEffect(() => {
-    setSavedData(JSON.parse(localStorage.getItem("Data")));
-  }, []);
+function Display() {
+  const [apiData, setApiData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  function deleteList(index) {
-    const filter = data.filter((i, id) => id !== index);
-    localStorage.setItem("Data", JSON.stringify(filter));
-    setSavedData(filter);
-  }
-  function delAll() {
-    setSavedData([]);
-    localStorage.clear();
-  }
-  function previous() {
-    navigate(-1);
-    setEmail("");
-    setMobileNo("");
-    setUserName("");
-  }
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    axios
+      .get("https://64aed895c85640541d4dd114.mockapi.io/user")
+      .then((res) => {
+        setApiData(res.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+      });
+  };
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`https://64aed895c85640541d4dd114.mockapi.io/user/${id}`)
+      .then((response) => {
+        console.log("Item deleted successfully.");
+        const updatedData = apiData.filter((item) => item.id !== id);
+        setApiData(updatedData);
+      })
+      .catch((error) => {
+        console.error("Error deleting item:", error);
+      });
+  };
+  const handleEdit = (id) => {
+    navigate(`/update/${id}`);
+  };
   return (
-    <div class="container-main">
-      <div className="top" onClick={previous}>
-        <IoMdArrowRoundBack className="back" onClick={previous} />
-        <span>Previos Page</span>
-      </div>
-      <DataTable
-        data={data}
-        delAll={delAll}
-        deleteList={deleteList}
-        editList={editList}
-      />
+    <div className="table-cont">
+      {isLoading ? (
+        <div className="cont-load">
+          <RingLoader size={100} color="#131c9c" />
+        </div>
+      ) : apiData.length === 0 ? (
+        <div className="no-data">
+          <h1>No Data</h1>
+          <button className="create-btn" onClick={() => navigate("/")}>
+            Create
+          </button>
+        </div>
+      ) : (
+        <div className="container-main">
+          <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
+            USER DETAILS
+          </h1>
+          <div className="top">
+            <button className="create-btn" onClick={() => navigate("/")}>
+              Create
+            </button>
+          </div>
+
+          <DataTable
+            apiData={apiData}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+          />
+        </div>
+      )}
     </div>
   );
 }
 
-export default Dsiplay;
+export default Display;

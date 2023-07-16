@@ -1,75 +1,38 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-function DataTable({ data, deleteList, delAll, editList }) {
+function DataTable({ apiData, handleDelete, handleEdit }) {
   return (
-<>
-  {data.length > 0 ? (
-    <div className="container">
-      <div className="row">
-        <div className="col">
-          <div className="table-cont">
-            <table className="table table-striped table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">S.No.</th>
-                  <th scope="col">User Name</th>
-                  <th scope="col">Mobile Number</th>
-                  <th scope="col">E-Mail</th>
-                  <th scope="col">Action Buttons</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((data, id) => (
-                  <tr key={id}>
-                    <th scope="row">{id + 1}</th>
-                    <td>{data.userName}</td>
-                    <td>{data.mobileNo}</td>
-                    <td>{data.email}</td>
-                    <td className="align-middle text-center">
-                      <div className="d-flex justify-content-center">
-                        <button
-                          type="button"
-                          className="btn btn-outline-danger btn-sm me-2"
-                          onClick={() => deleteList(id)}
-                        >
-                          Delete
-                        </button>
-                        <Link to={"/"}>
-                          <button
-                            type="button"
-                            className="btn btn-outline-success btn-sm"
-                            onClick={() => editList(id)}
-                          >
-                            Edit
-                          </button>
-                        </Link>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div className="row mt-4">
-        <div className="col-12 d-flex justify-content-center">
-          <button
-            type="button"
-            className="btn btn-danger"
-            onClick={delAll}
-          >
-            Delete All
-          </button>
-        </div>
-      </div>
+    <div className="table-div">
+     <table>
+      <thead>
+        <tr>
+          <th>S.No.</th>
+          <th>Name</th>
+          <th>MobileNo</th>
+          <th>Email</th>
+          <th>Action Button</th>
+        </tr>
+      </thead>
+      <tbody>
+        {apiData.map((item, index) => (
+          <tr key={item.id}>
+            <td>{index + 1}</td>
+            <td>{item.name}</td>
+            <td>{item.mobileNo}</td>
+            <td>{item.email}</td>
+            <td>
+              <button className="edit-btn" onClick={() => handleEdit(item.id)}>Edit</button>
+              <button className="del-btn" onClick={() => handleDelete(item.id)}>
+                Delete
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
     </div>
-  ) : (
-    <h3 style={{ textAlign: "center", color: "dimgray" }}>NO DATA</h3>
-  )}
-</>
-
+   
   );
 }
 
