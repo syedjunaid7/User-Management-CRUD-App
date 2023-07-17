@@ -36,11 +36,11 @@ input {
   font-size: 20px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  transition: border-color 0.3s ease-in;
+  transition: border-color 0.6s ease-in-out;
 }
 
 input:hover {
-  border: 2px solid #068fff;
+  border: 3px solid #068fff;
 }
 
 input::placeholder {
@@ -118,6 +118,7 @@ input::placeholder[value="Empty Field"] {
 }
 
 .table-div {
+  position: relative;
   height: 60vh;
   padding: 9px;
   border-radius: 7px;
@@ -208,6 +209,54 @@ tr:hover {
 .edit-div button {
   margin-top: 19px;
 }
+.pop-main {
+  position: absolute;
+  height: 150vh;
+  width: 100vw;
+  background: #0002;
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+.pop-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1;
+  top: 80vh;
+  right: 42vw;
+  width: 15vw;
+  height: 25vh;
+}
+.yes {
+  margin-right: 20px;
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.yes:hover {
+  background-color: #c80e0e;
+}
+.no {
+  background-color: #48de5e;
+  color: #ffffff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.no:hover {
+  background-color: #0e9e1e;
+}
+
 @media screen and (max-width: 480px) {
   .App {
     height: 100vh;
@@ -217,7 +266,7 @@ tr:hover {
     width: 80%;
     height: 50vh;
   }
-  .container-main{
+  .container-main {
     height: 80vh;
   }
   thead {
@@ -261,5 +310,13 @@ tr:hover {
     letter-spacing: 1px;
     font-weight: 100;
     padding: 6px 9px;
+  }
+  .pop-main {
+    height: 170vh;
+  }
+  .pop-div {
+    top: 100vh;
+    width: 50vw;
+    right: 100px;
   }
 }

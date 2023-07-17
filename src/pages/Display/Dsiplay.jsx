@@ -3,10 +3,13 @@ import DataTable from "../../components/DataTable/DataTable";
 import axios from "axios";
 import RingLoader from "react-spinners/RingLoader";
 import { useNavigate } from "react-router-dom";
+import PopUp from "./PopUp";
 
 function Display() {
   const [apiData, setApiData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [delCnfrm, setDelCnfrm] = useState(false);
+  const [id, setId] = useState()
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,25 +30,15 @@ function Display() {
   };
 
   const handleDelete = (id) => {
-    setIsLoading(true);
-    axios
-      .delete(`https://64aed895c85640541d4dd114.mockapi.io/user/${id}`)
-      .then((response) => {
-        console.log("Item deleted successfully.");
-        const updatedData = apiData.filter((item) => item.id !== id);
-        setApiData(updatedData);
-      })
-      .catch((error) => {
-        console.error("Error deleting item:", error);
-      }).finally(() => {
-        setIsLoading(false)
-      })
+    setDelCnfrm(true)
+    setId(id)
   };
   const handleEdit = (id) => {
     navigate(`/update/${id}`);
   };
   return (
     <div className="table-cont">
+
       {isLoading ? (
         <div className="cont-load">
           <RingLoader size={100} color="#131c9c" />
@@ -66,14 +59,16 @@ function Display() {
             <button className="create-btn" onClick={() => navigate("/")}>
               Create
             </button>
-          </div>
+    {delCnfrm ? <PopUp id={id} setDelCnfrm={setDelCnfrm} setIsLoading={setIsLoading} setApiData={setApiData} apiData={apiData}/> : ''}
 
+          </div>
           <DataTable
           isLoading={isLoading}
             apiData={apiData}
             handleDelete={handleDelete}
             handleEdit={handleEdit}
           />
+          
         </div>
       )}
     </div>

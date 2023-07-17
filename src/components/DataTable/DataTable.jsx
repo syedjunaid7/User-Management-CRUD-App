@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useNavigate } from "react-router-dom";
+
 
 function DataTable({ apiData, handleDelete, handleEdit, isLoading }) {
+  const navigate = useNavigate();
   return (
     <div className="table-div">
       <table className="table-lg">
