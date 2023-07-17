@@ -27,6 +27,7 @@ function Display() {
   };
 
   const handleDelete = (id) => {
+    setIsLoading(true);
     axios
       .delete(`https://64aed895c85640541d4dd114.mockapi.io/user/${id}`)
       .then((response) => {
@@ -36,7 +37,9 @@ function Display() {
       })
       .catch((error) => {
         console.error("Error deleting item:", error);
-      });
+      }).finally(() => {
+        setIsLoading(false)
+      })
   };
   const handleEdit = (id) => {
     navigate(`/update/${id}`);
@@ -66,6 +69,7 @@ function Display() {
           </div>
 
           <DataTable
+          isLoading={isLoading}
             apiData={apiData}
             handleDelete={handleDelete}
             handleEdit={handleEdit}

@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ClipLoader from "react-spinners/ClipLoader";
 
-function DataTable({ apiData, handleDelete, handleEdit }) {
+function DataTable({ apiData, handleDelete, handleEdit, isLoading }) {
   return (
     <div className="table-div">
       <table className="table-lg">
         <thead>
-          <tr>
-            <th>S.No.</th>
-            <th>Name</th>
-            <th>MobileNo</th>
-            <th>Email</th>
-            <th>Action Button</th>
-          </tr>
+          <th>S.No.</th>
+          <th>Name</th>
+          <th>MobileNo</th>
+          <th>Email</th>
+          <th>Action Button</th>
         </thead>
         <tbody>
           {apiData.map((item, index) => (
@@ -21,7 +20,7 @@ function DataTable({ apiData, handleDelete, handleEdit }) {
               <td>{item.name}</td>
               <td>{item.mobileNo}</td>
               <td>{item.email}</td>
-              <td style={{textAlign : 'center'}}>
+              <td style={{ textAlign: "center" }}>
                 <button
                   className="edit-btn"
                   onClick={() => handleEdit(item.id)}
@@ -49,12 +48,16 @@ function DataTable({ apiData, handleDelete, handleEdit }) {
             <th>Email</th>
           </tr>
         </thead>
-        <tbody >
+        <tbody>
           {apiData.map((item, index) => (
             <React.Fragment key={item.id}>
-  
-              <tr style={{ borderLeft: "1px solid #ccc", borderRight: "1px solid #ccc" }}>
-                <td >{index + 1}</td>
+              <tr
+                style={{
+                  borderLeft: "1px solid #ccc",
+                  borderRight: "1px solid #ccc",
+                }}
+              >
+                <td>{index + 1}</td>
                 <td>{item.name}</td>
                 <td>{item.mobileNo}</td>
                 <td>{item.email}</td>
@@ -79,10 +82,8 @@ function DataTable({ apiData, handleDelete, handleEdit }) {
                   >
                     Delete
                   </button>
-  
                 </td>
                 <br />
-
               </tr>
             </React.Fragment>
           ))}

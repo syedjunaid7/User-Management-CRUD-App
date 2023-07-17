@@ -16,6 +16,7 @@ function Update() {
   }, []);
 
   const fetchData = () => {
+    setIsLoading(true)
     axios
       .get(`https://64aed895c85640541d4dd114.mockapi.io/user/${id}`)
       .then((res) => {
@@ -26,7 +27,10 @@ function Update() {
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   };
 
   const submit = () => {
