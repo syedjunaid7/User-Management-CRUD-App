@@ -8,7 +8,7 @@ function Create() {
   const [mobileNo, setMobileNo] = useState("");
   const [email, setEmail] = useState("");
   const [empty, setEmpty] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // New state for loading indicator
+  const [isLoading, setIsLoading] = useState(false); 
 
   const navigate = useNavigate();
 
