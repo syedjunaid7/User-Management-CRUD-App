@@ -8,12 +8,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("https://img.freepik.com/free-vector/background-abstract-line-digital-design-gradient-template_483537-2161.jpg?w=996&t=st=1689448720~exp=1689449320~hmac=be88a82b23bc3f5f39e434b49de7a39f635e8f22cf7b0e7add9bc411c62f3df9");
+  background-color: #DDE6ED;
 }
 
 .create-div {
-  height: 100vh;
-  width: 90%;
+  height: 60vh;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -120,7 +120,17 @@ input::placeholder[value="Empty Field"] {
 
 .table-div {
   height: 60vh;
+  padding: 9px;
+  border-radius: 7px;
+  background-color: white;
   overflow-y: scroll;
+}
+.table-div .table-lg{
+  background-color: white;
+  display: block;
+}
+.table-div .table-sm{
+  display: none;
 }
 
 table {
@@ -131,8 +141,9 @@ table {
 }
 
 thead {
+  border-radius: 9px !important;
   position: sticky;
-  top: 0;
+  top: -9px;
   background-color: #e58282;
 }
 
@@ -141,7 +152,7 @@ td {
   width: auto;
   padding: 8px;
   text-align: left;
-  border: 0.1px solid #fed7d7 !important;
+  border: none !important;
   font-size: large;
 }
 
@@ -202,10 +213,29 @@ tr:hover {
     height: 100vh;
     width: 100%;
   }
+  .create-div{
+    width: 80%;
+    height: 50vh;
+  }
+  thead{
+    top: 0px;
+  }
   .table-cont {
     height: 100vh;
     padding: 0;
     margin: auto;
+  }
+  .table-div .table-lg{
+    display: none;
+  }
+  .table-div{
+    border-radius: 4px;
+    padding: 0px 5px;
+
+  }
+  .table-div .table-sm{
+    background-color: white;
+    display: block;
   }
   .table-div {
     margin: auto;
@@ -215,19 +245,22 @@ tr:hover {
     width: 30%;
     padding: 4px;
     font-size: 12px;
+    border: none !important;
   }
+
+
 
   th {
     font-size: 14px;
   }
   .del-btn,
   .edit-btn {
-    padding: 2px 5px;
+    letter-spacing: 1px;
+    padding: 2px 7px;
     font-size: 12px;
   }
   .top .create-btn{
     letter-spacing: 1px;
-    font-size: small;
     font-weight: 100;
     padding: 6px 9px;
   }
