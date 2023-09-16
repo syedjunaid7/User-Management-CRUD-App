@@ -1,70 +1,18 @@
-# Getting Started with Create React App
+React CRUD App - Manage Your Data with Ease
+Introducing our React CRUD (Create, Read, Update, Delete) App, a powerful tool designed to simplify data management. With this app, you can effortlessly perform a variety of operations on your data:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Create - Add new entries by entering a name, email, and mobile number. Once you hit submit, a loader will appear inside the button while your data is being securely sent to our mock API.
 
-## Available Scripts
+Read - View your data in a neatly organized table, complete with serial numbers (S.No.), names, mobile numbers, and email addresses.
 
-In the project directory, you can run:
+Update - Easily edit your existing data. Just click the "Edit" button associated with the entry you want to modify.
 
-### `npm start`
+Delete - Remove data entries with confidence. When you click the "Delete" button, a confirmation dialog will appear, allowing you to choose "Yes" or "No." If you select "Yes," the data will be swiftly and securely deleted using the Axios "delete" method with our mock API.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Our React CRUD App provides a seamless and user-friendly experience for managing your data. It streamlines the process of adding, viewing, editing, and deleting entries, ensuring that your data remains accurate and up-to-date.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Whether you're managing a list of contacts, inventory items, or any other type of data, our app makes it easier than ever to maintain and organize your information.
 
-### `npm test`
+Try it out today and discover the convenience of efficient data management!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+(Note: This app was created using React and Axios by Syed Junaid Husain.)

@@ -8,7 +8,7 @@ function Create() {
   const [mobileNo, setMobileNo] = useState("");
   const [email, setEmail] = useState("");
   const [empty, setEmpty] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ function Create() {
           console.log(error);
         })
         .finally(() => {
-          setIsLoading(false); 
+          setIsLoading(false);
         });
     } else {
       setEmpty(true);
@@ -46,18 +46,21 @@ function Create() {
         placeholder={empty !== false ? "Empty Field" : "Name"}
         type="text"
         value={name}
+        required="required"
         onChange={(e) => setName(e.target.value)}
       />
       <input
         placeholder={empty !== false ? "Empty Field" : "Mobile No"}
         type="number"
         value={mobileNo}
+        required="required"
         onChange={(e) => setMobileNo(e.target.value)}
       />
       <input
         placeholder={empty !== false ? "Empty Field" : "Email"}
         type="email"
         value={email}
+        required="required"
         onChange={(e) => setEmail(e.target.value)}
       />
       <button className="submit-btn" type="submit" onClick={submit}>
